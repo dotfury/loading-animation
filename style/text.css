@@ -1,69 +1,43 @@
+/* 
+https://blog.avada.io/css/3d-text-effects
+*/
 :root {
-  --border-length: 1px;
-  --border-depth: 15px;
-  --_s: calc(var(--border-depth) + var(--border-length));
   --grey: #1a1a1a;
   --pink: #f21e8c;;
   --white: #ffffff;
 }
 
 @keyframes loading {
-  0%, 30%, 100% {
-    clip-path: polygon(
-      var(--border-depth) 0%,
-      var(--border-depth) 0%,
-      100% 0%,
-      100% calc(100% - var(--border-depth)),
-      100% calc(100% - var(--border-depth)),
-      var(--border-depth) calc(100% - var(--border-depth))
-    );
-    transform: translate(calc(var(--border-depth) / -1), var(--border-depth));
+  0%, 60%, 100% {
+    transform: rotateX(70deg) translateZ(0);
+    -webkit-text-stroke: 1px rgba(255, 0, 0, 0);
+    text-stroke: 1px rgba(255, 0, 0, 0);
   }
 
   20% {
-    clip-path: polygon(
-      0% var(--border-depth),
-      var(--border-depth) 0%,
-      100% 0%,
-      100% calc(100% - var(--border-depth)),
-      calc(100% - var(--border-depth)) 100%,
-      0% 100%
-    );
-    transform: translate(0, 0);
+    transform: rotateX(70deg) translateZ(50px);
+    -webkit-text-stroke: 2px rgba(255, 0, 0, 1);
+    text-stroke: 2px rgba(255, 0, 0, 1);
   }
 }
 
 .text-container {
-  position: relative;
   display: flex;
+  perspective: 9999px;
+  transform-style: preserve-3d;
 }
 
 .text {
-  -webkit-text-stroke: 2px red;
-  text-stroke: 2px red;
-  background-color: transparent;
-  border: solid transparent;
-  border-bottom-style: solid;
-  border-width: var(--border-length) var(--border-length) var(--_s) var(--_s);
-  color: var(--white);
-  clip-path: polygon(
-    var(--border-depth) 0%,
-    var(--border-depth) 0%,
-    100% 0%,
-    100% calc(100% - var(--border-depth)),
-    100% calc(100% - var(--border-depth)),
-    var(--border-depth) calc(100% - var(--border-depth))
-  );
-  font-size: 3rem;
+  transform-style: preserve-3d;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 0, 0, 0);
+  text-stroke: 1px rgba(255, 0, 0, 0);
+  font-size: 6rem;
   font-weight: 700;
   line-height: 1;
-  transform: translate(calc(var(--border-depth) / -1), var(--border-depth));
-  /* transition: 0.3s; */
-  /* padding: 5px; */
-  /* position: absolute;
-  left: 2px;
-  bottom: 5px; */
-  animation: loading 6s infinite alternate linear;
+  transition: text-stroke ease-in, -webkit-text-stroke ease-in, transform cubic-bezier(0.55, 0.055, 0.675, 0.9);
+  transform: rotateX(70deg);
+  animation: loading 4s infinite normal;
 }
 
 /* .text.l {

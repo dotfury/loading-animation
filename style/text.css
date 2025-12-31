@@ -1,11 +1,6 @@
 /* 
 https://blog.avada.io/css/3d-text-effects
 */
-:root {
-  --grey: #1a1a1a;
-  --pink: #f21e8c;;
-  --white: #ffffff;
-}
 
 @keyframes loading {
   0%, 60%, 100% {
@@ -21,6 +16,20 @@ https://blog.avada.io/css/3d-text-effects
   }
 }
 
+@keyframes layer {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    -webkit-text-stroke: 2px rgba(255, 0, 0, 0);
+    text-stroke: 2px rgba(255, 0, 0, 0);
+  }
+
+  20% {
+    transform: translateY(var(--layer-offset));
+    -webkit-text-stroke: 2px rgba(255, 0, 0, 1);
+    text-stroke: 2px rgba(255, 0, 0, 1);
+  }
+}
+
 .text-container {
   display: flex;
   perspective: 9999px;
@@ -28,16 +37,57 @@ https://blog.avada.io/css/3d-text-effects
 }
 
 .text {
-  transform-style: preserve-3d;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 0, 0, 0);
-  text-stroke: 1px rgba(255, 0, 0, 0);
+  transform-style: preserve-3d;
+  position: relative;
   font-size: 6rem;
   font-weight: 700;
   line-height: 1;
   transition: text-stroke ease-in, -webkit-text-stroke ease-in, transform cubic-bezier(0.55, 0.055, 0.675, 0.9);
   transform: rotateX(70deg);
-  animation: loading 4s infinite normal;
+  -webkit-text-stroke: 1px rgba(255, 0, 0, 0);
+  text-stroke: 1px rgba(255, 0, 0, 0);
+  animation: loading 3.5s infinite normal;
+}
+
+.text.l .layer::after {
+  content: "L";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: transparent;
+  transform: translateY(0);
+  /* -webkit-text-stroke: 2px rgba(255, 0, 0, 1);
+  text-stroke: 2px rgba(255, 0, 0, 1); */
+  animation: layer 3.5s infinite normal;
+}
+
+.text.l .layer:nth-of-type(1)::after {
+  --layer-offset: 2px;
+}
+.text.l .layer:nth-of-type(2)::after {
+  --layer-offset: 4px;
+}
+.text.l .layer:nth-of-type(3)::after {
+  --layer-offset: 6px;
+}
+.text.l .layer:nth-of-type(4)::after {
+  --layer-offset: 8px;
+}
+.text.l .layer:nth-of-type(5)::after {
+  --layer-offset: 10px;
+}
+.text.l .layer:nth-of-type(6)::after {
+  --layer-offset: 12px;
+}
+.text.l .layer:nth-of-type(7)::after {
+  --layer-offset: 14px;
+}
+.text.l .layer:nth-of-type(8)::after {
+  --layer-offset: 16px;
+}
+.text.l .layer:nth-of-type(9)::after {
+  --layer-offset: 18px;
 }
 
 /* .text.l {

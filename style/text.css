@@ -1,32 +1,43 @@
-/* 
-https://blog.avada.io/css/3d-text-effects
-*/
+:root {
+  --lift-height: 20px;
+  --text-rotation: 70deg;
+  --duration: 3.5s;
+  --transparent-stroke: 2px rgba(190, 190, 190, 0);
+  --opaque-stroke: 2px rgba(190, 190, 190, 1);
+  --easing: cubic-bezier(0.55, 0.055, 0.675, 0.9);
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 @keyframes loading {
   0%, 60%, 100% {
-    transform: rotateX(70deg) translateZ(0);
-    -webkit-text-stroke: 1px rgba(255, 0, 0, 0);
-    text-stroke: 1px rgba(255, 0, 0, 0);
+    transform: rotateX(var(--text-rotation)) translateZ(0);
+    -webkit-text-stroke: var(--transparent-stroke);
+    text-stroke: var(--transparent-stroke);
   }
 
   20% {
-    transform: rotateX(70deg) translateZ(50px);
-    -webkit-text-stroke: 2px rgba(255, 0, 0, 1);
-    text-stroke: 2px rgba(255, 0, 0, 1);
+    transform: rotateX(var(--text-rotation)) translateZ(var(--lift-height));
+    -webkit-text-stroke: var(--opaque-stroke);
+    text-stroke: var(--opaque-stroke);
   }
 }
 
 @keyframes layer {
   0%, 60%, 100% {
     transform: translateY(0);
-    -webkit-text-stroke: 2px rgba(255, 0, 0, 0);
-    text-stroke: 2px rgba(255, 0, 0, 0);
+    -webkit-text-stroke: var(--transparent-stroke);
+    text-stroke: var(--transparent-stroke);
   }
 
   20% {
     transform: translateY(var(--layer-offset));
-    -webkit-text-stroke: 2px rgba(255, 0, 0, 1);
-    text-stroke: 2px rgba(255, 0, 0, 1);
+    -webkit-text-stroke: var(--opaque-stroke);
+    text-stroke: var(--opaque-stroke);
   }
 }
 
@@ -38,61 +49,85 @@ https://blog.avada.io/css/3d-text-effects
 
 .text {
   color: transparent;
-  transform-style: preserve-3d;
   position: relative;
-  font-size: 6rem;
+  font-size: clamp(2rem, 10vw, 12rem);
   font-weight: 700;
-  line-height: 1;
-  transition: text-stroke ease-in, -webkit-text-stroke ease-in, transform cubic-bezier(0.55, 0.055, 0.675, 0.9);
+  line-height: 1.5;
+  transform-style: preserve-3d;
   transform: rotateX(70deg);
-  -webkit-text-stroke: 1px rgba(255, 0, 0, 0);
-  text-stroke: 1px rgba(255, 0, 0, 0);
-  animation: loading 3.5s infinite normal;
+  animation: loading var(--duration) infinite normal var(--easing);
+  -webkit-text-stroke: var(--transparent-stroke);
+  text-stroke: var(--transparent-stroke);
 }
 
-.text.l .layer::after {
-  content: "L";
+.text .layer::after {
   position: absolute;
   left: 0;
   bottom: 0;
   color: transparent;
   transform: translateY(0);
-  /* -webkit-text-stroke: 2px rgba(255, 0, 0, 1);
-  text-stroke: 2px rgba(255, 0, 0, 1); */
-  animation: layer 3.5s infinite normal;
+  animation: layer var(--duration) infinite normal var(--easing);
 }
 
-.text.l .layer:nth-of-type(1)::after {
+.text .layer:nth-of-type(1)::after {
+  --layer-offset: 1px;
+}
+.text .layer:nth-of-type(2)::after {
   --layer-offset: 2px;
 }
-.text.l .layer:nth-of-type(2)::after {
+.text .layer:nth-of-type(3)::after {
+  --layer-offset: 3px;
+}
+.text .layer:nth-of-type(4)::after {
   --layer-offset: 4px;
 }
-.text.l .layer:nth-of-type(3)::after {
+.text .layer:nth-of-type(5)::after {
+  --layer-offset: 5px;
+}
+.text .layer:nth-of-type(6)::after {
   --layer-offset: 6px;
 }
-.text.l .layer:nth-of-type(4)::after {
+.text .layer:nth-of-type(7)::after {
+  --layer-offset: 7px;
+}
+.text .layer:nth-of-type(8)::after {
   --layer-offset: 8px;
 }
-.text.l .layer:nth-of-type(5)::after {
+.text .layer:nth-of-type(9)::after {
+  --layer-offset: 9px;
+}
+.text .layer:nth-of-type(10)::after {
   --layer-offset: 10px;
 }
-.text.l .layer:nth-of-type(6)::after {
-  --layer-offset: 12px;
+
+.text.l .layer::after {
+  content: "L";
 }
-.text.l .layer:nth-of-type(7)::after {
-  --layer-offset: 14px;
+.text.o .layer::after {
+  content: "O";
+  animation-delay: 0.1s;
 }
-.text.l .layer:nth-of-type(8)::after {
-  --layer-offset: 16px;
+.text.a .layer::after {
+  content: "A";
+  animation-delay: 0.2s;
 }
-.text.l .layer:nth-of-type(9)::after {
-  --layer-offset: 18px;
+.text.d .layer::after {
+  content: "D";
+  animation-delay: 0.3s;
+}
+.text.i .layer::after {
+  content: "I";
+  animation-delay: 0.4s;
+}
+.text.n .layer::after {
+  content: "N";
+  animation-delay: 0.5s;
+}
+.text.g .layer::after {
+  content: "G";
+  animation-delay: 0.6s;
 }
 
-/* .text.l {
-  animation-delay: 5s;
-} */
 .text.o {
   animation-delay: 0.1s;
 }
@@ -111,4 +146,3 @@ https://blog.avada.io/css/3d-text-effects
 .text.g {
   animation-delay: 0.6s;
 }
-

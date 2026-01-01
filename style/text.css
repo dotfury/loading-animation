@@ -4,7 +4,8 @@
   --duration: 3.5s;
   --transparent-stroke: 2px rgba(190, 190, 190, 0);
   --opaque-stroke: 2px rgba(190, 190, 190, 1);
-  --easing: cubic-bezier(0.55, 0.055, 0.675, 0.9);
+  /* --easing: cubic-bezier(0.55, 0.055, 0.675, 0.9); */
+  --easing: cubic-bezier(.81,.15,.32,.84);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-synthesis: none;
@@ -53,6 +54,7 @@
   font-size: clamp(2rem, 10vw, 12rem);
   font-weight: 700;
   line-height: 1.5;
+  letter-spacing: -2px;
   transform-style: preserve-3d;
   transform: rotateX(70deg);
   animation: loading var(--duration) infinite normal var(--easing);

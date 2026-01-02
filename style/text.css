@@ -1,12 +1,12 @@
 :root {
-  --lift-height: 30px;
+  --lift-height: 15px;
   --text-rotation: 70deg;
   --duration: 3s;
   --transparent-stroke: 2px rgba(190, 190, 190, 0);
   --opaque-stroke: 2px rgba(190, 190, 190, 1);
   --easing: cubic-bezier(.81, .15, .32, .84);
 
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

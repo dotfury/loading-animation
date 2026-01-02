@@ -1,14 +1,24 @@
 window.addEventListener('DOMContentLoaded', function() {
   const gui = new lil.GUI();
   const config = {
-    textShadow: false
+    textFill: false,
+    lift: 15,
+    rotation: 70,
   };
 
-  gui.add(config, 'textShadow').onChange(isActive => {
+  gui.add(config, 'textFill').name('Text Fill').onChange(isActive => {
     if (isActive) {
       document.body.classList.add('with-shadow');
     } else {
       document.body.classList.remove('with-shadow');
     }
+  });
+
+  gui.add(config, 'lift', 15, 60, 1).name('Lift Height').onChange(value => {
+    document.documentElement.style.setProperty('--lift-height', `${value}px`);
+  });
+
+  gui.add(config, 'rotation', 0, 70, 1).name('Text Rotation').onChange(value => {
+    document.documentElement.style.setProperty('--text-rotation', `${value}deg`);
   });
 });

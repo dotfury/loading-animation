@@ -1,11 +1,10 @@
 :root {
-  --lift-height: 20px;
+  --lift-height: 30px;
   --text-rotation: 70deg;
-  --duration: 3.5s;
+  --duration: 3s;
   --transparent-stroke: 2px rgba(190, 190, 190, 0);
   --opaque-stroke: 2px rgba(190, 190, 190, 1);
-  /* --easing: cubic-bezier(0.55, 0.055, 0.675, 0.9); */
-  --easing: cubic-bezier(.81,.15,.32,.84);
+  --easing: cubic-bezier(.81, .15, .32, .84);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-synthesis: none;
@@ -21,7 +20,7 @@
     text-stroke: var(--transparent-stroke);
   }
 
-  20% {
+  30% {
     transform: rotateX(var(--text-rotation)) translateZ(var(--lift-height));
     -webkit-text-stroke: var(--opaque-stroke);
     text-stroke: var(--opaque-stroke);
@@ -35,7 +34,7 @@
     text-stroke: var(--transparent-stroke);
   }
 
-  20% {
+  30% {
     transform: translateY(var(--layer-offset));
     -webkit-text-stroke: var(--opaque-stroke);
     text-stroke: var(--opaque-stroke);
@@ -60,6 +59,7 @@
   animation: loading var(--duration) infinite normal var(--easing);
   -webkit-text-stroke: var(--transparent-stroke);
   text-stroke: var(--transparent-stroke);
+  text-shadow: 0 0 0 rgba(190, 190, 190, 1);
 }
 
 .text .layer::after {

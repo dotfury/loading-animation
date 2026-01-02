@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', function() {
   const gui = new lil.GUI();
   const config = {
     textFill: false,
-    lift: 15,
+    lift: 30,
     rotation: 70,
   };
 
